@@ -17,20 +17,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-/*
--------------------------------------------------
-ROOT ROUTE
--------------------------------------------------
-*/
 app.get("/", (req, res) => {
   res.send("REST API is running");
 });
 
-/*
--------------------------------------------------
-GET - Return tickets (with optional filtering)
--------------------------------------------------
-*/
+
 app.get("/api/v1/tickets", async (req, res) => {
 
   const { status } = req.query;
@@ -82,11 +73,7 @@ app.post("/api/v1/tickets", async (req, res) => {
 
 });
 
-/*
--------------------------------------------------
-PUT - Update an existing ticket
--------------------------------------------------
-*/
+
 app.put("/api/v1/tickets/:id", async (req, res) => {
 
   const { id } = req.params;
@@ -108,11 +95,7 @@ app.put("/api/v1/tickets/:id", async (req, res) => {
 
 });
 
-/*
--------------------------------------------------
-TEST DATABASE CONNECTION
--------------------------------------------------
-*/
+
 app.get("/test-db", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM tickets");
@@ -123,11 +106,7 @@ app.get("/test-db", async (req, res) => {
   }
 });
 
-/*
--------------------------------------------------
-START SERVER
--------------------------------------------------
-*/
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
